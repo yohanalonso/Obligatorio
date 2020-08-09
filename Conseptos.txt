@@ -1,0 +1,8 @@
+Usuario
+Clientes
+Articulos
+Vendedor
+Carrito
+Metodo de envío
+Forma de pago
+Direccion
