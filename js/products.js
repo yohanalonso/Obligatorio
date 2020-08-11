@@ -1,37 +1,27 @@
-var currentProductsArray = [];
-var minCount = undefined;
-var maxCount = undefined;
-
-function showCategoriesList(categoriesArray) {
-
-    if (categoriesArray != undefined) {
-        currentProductsArray = productsArray;
-    }
-
-    console.log(productsArray);
+function showProductsList(productsArray) {
 
     let htmlContentToAppend = "";
-    for (let i = 0; i < currentProductsArray.length; i++) {
-        let product = currentProductsArray[i];
+    for (let i = 0; i < productsArray.length; i++) {
+        let product = productsArray[i];
+
         htmlContentToAppend += `
             <a href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
-                        <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
+                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">` + category.name + `</h4>
-                            <small class="text-muted">` + category.currency + ` ` + category.soldCount + `</small>
+                            <h4 class="mb-1">` + product.name + `</h4>
+                            <small class="text-muted">` + product.productCount + ` artículos</small>
                         </div>
-                        <p class="mb-1">` + category.description + `</p>
+                        <p class="mb-1">` + product.description + `</p>
                     </div>
                 </div>
             </a>
             `
-        console.log(htmlContentToAppend);
 
-        document.getElementById("spinner-wrapper").innerHTML = htmlContentToAppend;
+        document.getElementById("pro-list-container").innerHTML = htmlContentToAppend;
     }
 }
 
@@ -41,8 +31,8 @@ function showCategoriesList(categoriesArray) {
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            showCategoriesList(resultObj.data);
+            console.log(resultObj.data);
+            showProductsList(resultObj.data);
         }
     });
-
 });
