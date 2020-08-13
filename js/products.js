@@ -31,7 +31,6 @@ function showProductsList(productsArray) {
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            console.log(resultObj.data);
             showProductsList(resultObj.data);
         }
     });
