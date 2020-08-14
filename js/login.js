@@ -14,10 +14,12 @@ function redireccionar() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
-    document.getElementById("IniciarBottom").addEventListener("click", function() {
+    document.getElementById("signin").addEventListener("submit", e => {
+        e.preventDefault();
+        let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
         valor1 = document.getElementById("inputPassword").value;
         valor2 = document.getElementById("inputEmail").value;
-        if (validar(valor1) && validar(valor2)) {
+        if (validar(valor1) && email.test(valor2)) {
             redireccionar();
         }
     });
