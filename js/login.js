@@ -6,8 +6,9 @@ function validar(valor) {
     }
 }
 
-function redireccionar() {
-    window.location.href = "index.html";
+function validarEmail(valor) {
+    let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    return email.test(valor2);
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -16,11 +17,10 @@ function redireccionar() {
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("signin").addEventListener("submit", e => {
         e.preventDefault();
-        let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
         valor1 = document.getElementById("inputPassword").value;
         valor2 = document.getElementById("inputEmail").value;
-        if (validar(valor1) && email.test(valor2)) {
-            redireccionar();
+        if (validar(valor1) && validarEmail(valor2)) {
+            window.location.href = "index.html";
         }
     });
 
