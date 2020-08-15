@@ -1,5 +1,5 @@
 function validar(valor) {
-    return (valor == null || valor.length == 0)
+    return !(valor == null || valor.length == 0);
 }
 
 function validarEmail(valor) {
