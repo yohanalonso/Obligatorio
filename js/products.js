@@ -44,7 +44,7 @@ function showProductsList() {
         let product = currentProductsArray[i];
 
         if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
-            ((maxCost == undefined) || (maxCost != undefined && parseInt(product.Cost) <= maxCost))) {
+            ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))) {
 
             htmlContentToAppend += `
             <a href="product-info.html" class="list-group-item list-group-item-action">
@@ -87,8 +87,7 @@ function sortAndShowProducts(sortCriteria, productArray) {
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            currentProductsArray = resultObj.data;
-            showProductsList();
+            sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data);
         }
     });
     document.getElementById("sortAsc").addEventListener("click", function() {
