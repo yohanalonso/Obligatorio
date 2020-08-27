@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     if (localStorage.getItem('usuario') != undefined) {
         document.getElementById("usuario").innerHTML = localStorage.getItem('usuario');
         document.getElementById("login").innerHTML = "";
+    } else {
+        window.location.href = "login.html";
     }
 
 });
