@@ -1,4 +1,5 @@
-var category = {};
+var product = {};
+var stars = "";
 
 function showImagesGallery(array) {
 
@@ -19,26 +20,96 @@ function showImagesGallery(array) {
     }
 }
 
+function showRelatedProducts(products, related) {
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < related.length; i++) {
+        let relatepr = products[related[i]];
+
+        htmlContentToAppend += `
+        <a href="product-info.html" class="list-group-item list-group-item-action">
+        <div class="row">
+            <div class="col-3">
+                <img src="` + relatepr.imgSrc + `" alt="` + relatepr.description + `" class="img-thumbnail">
+            </div>
+            <div class="col">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="mb-1">` + relatepr.name + `</h4>
+                </div>
+            </div>
+        </div>
+        </a>            
+        `
+
+        document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+    }
+
+};
+
+function showStars(cantidad) {
+
+    for (let i = 0; i < cantidad; i++) {
+        stars += `<span class="fa fa-star checked"></span>`
+    };
+    for (let i = 0; i < 5 - cantidad; i++) {
+        stars += `<span class="fa fa-star"></span>`
+    };
+};
+
+function showComments(comments) {
+
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < comments.length; i++) {
+        let info = comments[i];
+        showStars(info.score);
+        htmlContentToAppend += `<div>
+            <p>Puntaje: ` + stars + `</p>
+            <p>Opinion: ` + info.description + `</p>
+            <p>Usuario: ` + info.user + `</p>
+            <p>Fecha: ` + info.dateTime + `</p>
+        </div>
+        <hr>`
+        stars = "";
+    }
+    document.getElementById("comments").innerHTML = htmlContentToAppend;
+
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            category = resultObj.data;
+            product = resultObj.data;
 
             let categoryNameHTML = document.getElementById("categoryName");
-            let categoryDescriptionHTML = document.getElementById("categoryDescription");
-            let productCountHTML = document.getElementById("productCount");
-            let productCriteriaHTML = document.getElementById("productCriteria");
+            let descriptionHTML = document.getElementById("description");
+            let soldCountHTML = document.getElementById("soldCount");
+            let categoryHTML = document.getElementById("category");
+            let priceHTML = document.getElementById("price");
 
-            categoryNameHTML.innerHTML = category.name;
-            categoryDescriptionHTML.innerHTML = category.description;
-            productCountHTML.innerHTML = category.productCount;
-            productCriteriaHTML.innerHTML = category.productCriteria;
+            categoryNameHTML.innerHTML = product.name;
+            descriptionHTML.innerHTML = product.description;
+            soldCountHTML.innerHTML = product.soldCount;
+            categoryHTML.innerHTML = product.category;
+            priceHTML.innerHTML = product.currency + ` ` + product.cost;
+
+            getJSONData(PRODUCTS_URL).then(function(resultObj) {
+                if (resultObj.status === "ok") {
+                    showRelatedProducts(resultObj.data, product.relatedProducts);
+                };
+            });
 
             //Muestro las imagenes en forma de galería
-            showImagesGallery(category.images);
+            showImagesGallery(product.images);
         }
     });
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            showComments(resultObj.data);
+        }
+    });
+
 });
