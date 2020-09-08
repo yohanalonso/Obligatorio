@@ -63,13 +63,19 @@ function showComments(comments) {
     for (let i = 0; i < comments.length; i++) {
         let info = comments[i];
         showStars(info.score);
-        htmlContentToAppend += `<div>
-            <p>Puntaje: ` + stars + `</p>
-            <p>Opinion: ` + info.description + `</p>
-            <p>Usuario: ` + info.user + `</p>
-            <p>Fecha: ` + info.dateTime + `</p>
-        </div>
-        <hr>`
+        htmlContentToAppend += `
+            <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">
+                        <p>Puntaje: ` + stars + `</p>
+                        <p>Opinion: ` + info.description + `</p>
+                        <p>Usuario: ` + info.user + `</p>
+                        <p>Fecha: ` + info.dateTime + `</p>
+                    </div>
+                </div>
+            </a>
+            `
+
         stars = "";
     }
     document.getElementById("comments").innerHTML = htmlContentToAppend;
