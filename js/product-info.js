@@ -82,6 +82,8 @@ function showComments(comments) {
 
 }
 
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -116,6 +118,31 @@ document.addEventListener("DOMContentLoaded", function(e) {
         if (resultObj.status === "ok") {
             showComments(resultObj.data);
         }
+    });
+    document.getElementById("enviar").addEventListener("click", function() {
+        showStars(document.getElementById("score").value);
+        today = new Date();
+        dd = today.getDate();
+        mm = today.getMonth() + 1;
+        yyyy = today.getFullYear();
+        hour = today.getHours();
+        minutes = today.getMinutes();
+        seconds = today.getSeconds();
+        date = yyyy + `-` + mm + `-` + dd + ` ` + hour + `:` + minutes + `:` + seconds;
+        htmlContentToAppend = `
+        <a href="product-info.html" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col">
+                    <p>Puntaje: ` + stars + `</p>
+                    <p>Opinion: ` + document.getElementById("cuerpo").value + `</p>
+                    <p>Usuario: ` + localStorage.getItem('usuario') + `</p>
+                    <p>Fecha: ` + date + `</p>
+                </div>
+            </div>
+        </a>
+        `
+        stars = "";
+        document.getElementById("comments").innerHTML += htmlContentToAppend;
     });
 
 });
