@@ -64,7 +64,7 @@ function showComments(comments) {
         let info = comments[i];
         showStars(info.score);
         htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
+            <div class="list-group-item ">
                 <div class="row">
                     <div class="col">
                         <p>Puntaje: ` + stars + `</p>
@@ -73,7 +73,7 @@ function showComments(comments) {
                         <p>Fecha: ` + info.dateTime + `</p>
                     </div>
                 </div>
-            </a>
+            </div>
             `
 
         stars = "";
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         seconds = today.getSeconds();
         date = yyyy + `-` + mm + `-` + dd + ` ` + hour + `:` + minutes + `:` + seconds;
         htmlContentToAppend = `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col">
                     <p>Puntaje: ` + stars + `</p>
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     <p>Fecha: ` + date + `</p>
                 </div>
             </div>
-        </a>
+        </div>
         `
         stars = "";
         document.getElementById("comments").innerHTML += htmlContentToAppend;
