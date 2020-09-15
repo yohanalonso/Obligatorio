@@ -46,7 +46,10 @@ var getJSONData = function(url) {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
     if (localStorage.getItem('usuario') != undefined) {
-        document.getElementById("usuario").innerHTML = localStorage.getItem('usuario');
+        document.getElementById("dropdownMenuButton").innerHTML = localStorage.getItem('usuario');
     }
 
+    document.getElementById("cerrar").addEventListener("click", function() {
+        localStorage.removeItem('usuario');
+    });
 });
