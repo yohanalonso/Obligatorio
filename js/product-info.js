@@ -9,6 +9,7 @@ function showImagesGallery(array) {
         let imageSrc = array[i];
 
         htmlContentToAppend += `
+        
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
@@ -27,16 +28,13 @@ function showRelatedProducts(products, related) {
         let relatepr = products[related[i]];
 
         htmlContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
-        <div class="row">
-            <div class="col-3">
-                <img src="` + relatepr.imgSrc + `" alt="` + relatepr.description + `" class="img-thumbnail">
+        <a href="product-info.html" class="list-group-item list-group-item-action col-3" >
+        <div>
+            <img src="` + relatepr.imgSrc + `" alt="` + relatepr.description + `" class="img-thumbnail">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">` + relatepr.name + `</h4>
             </div>
-            <div class="col">
-                <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">` + relatepr.name + `</h4>
-                </div>
-            </div>
+            <p class="mb-1">` + relatepr.description + `</p>
         </div>
         </a>            
         `
