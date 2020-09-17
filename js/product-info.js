@@ -4,21 +4,36 @@ var stars = "";
 function showImagesGallery(array) {
 
     let htmlContentToAppend = "";
-
-    for (let i = 0; i < array.length; i++) {
-        let imageSrc = array[i];
-
+    if (array.length > 0) {
         htmlContentToAppend += `
-        
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="` + array[0] + `" class="d-block w-100" alt="...">
+                </div>`
+        for (let i = 1; i < array.length; i++) {
+            let imageSrc = array[i];
+
+            htmlContentToAppend += `
+            <div class="carousel-item">
+                <img src="` + imageSrc + `" class="d-block w-100" alt="...">
             </div>
+            `
+        }
+        htmlContentToAppend += `   
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
         `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 }
 
 function showRelatedProducts(products, related) {
