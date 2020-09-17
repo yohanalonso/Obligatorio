@@ -132,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     });
     document.getElementById("enviar").addEventListener("click", function() {
-        showStars(document.getElementById("score").value);
         today = new Date();
         dd = today.getDate();
         mm = today.getMonth() + 1;
@@ -145,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col">
-                    <p>Puntaje: ` + stars + `</p>
+                    <p>Puntaje: ` + showStars(document.getElementById("score").value) + `</p>
                     <p>Opinion: ` + document.getElementById("cuerpo").value + `</p>
                     <p>Usuario: ` + localStorage.getItem('usuario') + `</p>
                     <p>Fecha: ` + date + `</p>
