@@ -1,5 +1,4 @@
 var product = {};
-var stars = "";
 
 function showImagesGallery(array) {
 
@@ -60,6 +59,7 @@ function showRelatedProducts(products, related) {
 };
 
 function showStars(cantidad) {
+    let stars = "";
 
     for (let i = 0; i < cantidad; i++) {
         stars += `<span class="fa fa-star checked"></span>`
@@ -67,6 +67,7 @@ function showStars(cantidad) {
     for (let i = 0; i < 5 - cantidad; i++) {
         stars += `<span class="fa fa-star"></span>`
     };
+    return stars;
 };
 
 function showComments(comments) {
@@ -75,12 +76,11 @@ function showComments(comments) {
 
     for (let i = 0; i < comments.length; i++) {
         let info = comments[i];
-        showStars(info.score);
         htmlContentToAppend += `
             <div class="list-group-item ">
                 <div class="row">
                     <div class="col">
-                        <p>Puntaje: ` + stars + `</p>
+                        <p>Puntaje: ` + showStars(info.score) + `</p>
                         <p>Opinion: ` + info.description + `</p>
                         <p>Usuario: ` + info.user + `</p>
                         <p>Fecha: ` + info.dateTime + `</p>
@@ -89,7 +89,6 @@ function showComments(comments) {
             </div>
             `
 
-        stars = "";
     }
     document.getElementById("comments").innerHTML = htmlContentToAppend;
 
