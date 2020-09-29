@@ -50,12 +50,49 @@
             </div>
         </div>
     </nav>
-    <div class="container p-5">
-        <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-            <h4 class="alert-heading">¡A trabajar! :)</h4>
-            <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-            <hr>
-            <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="container">
+        <div class="text-center p-4">
+            <h2>Carrito de compras</h2>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 order-md-1">
+                <h4 class="mb-3">Articulos a comprar</h4>
+                <hr class="mb-4">
+                <div class="row">
+                    <p class="col-md-2"></p>
+                    <p class="col-md-4 col-md-offset-3"><strong>Nombre</strong></p>
+                    <p class="col-md-2"><strong>Costo</strong></p>
+                    <p class="col-md-2"><strong>Cantidad</strong></p>
+                    <p class="col-md-2"><strong>Subtotal</strong></p>
+                </div>
+                <hr>
+                <div id="cart"></div>
+                <hr class="mb-4">
+                <h4 class="mb-3">Costos</h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Subtotal</h6>
+                            <small class="text-muted">Costo unitario del producto por cantidad</small>
+                        </div>
+                        <span class="text-muted" id="productCostText">-</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Costo de envio</h6>
+                            <small class="text-muted">Según el tipo de envio</small>
+                        </div>
+                        <span class="text-muted" id="comissionText">-</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total ($)</span>
+                        <strong id="totalCostText">-</strong>
+                    </li>
+                </ul>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+            </div>
+
         </div>
     </div>
     <div id="spinner-wrapper">
