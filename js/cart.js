@@ -1,4 +1,6 @@
 var products = {};
+var subtotal = 0;
+var envio = 0;
 
 function showCart(array) {
     let htmlContentToAppend = "";
@@ -10,12 +12,14 @@ function showCart(array) {
                     <div class="col-md-2">
                         <img src="` + product.src + `" class="d-block w-100" alt="...">
                     </div>
-                    <p class="col-md-4 col-md-offset-3"><strong>Nombre</strong></p>
-                    <p class="col-md-2"><strong>Costo</strong></p>
-                    <p class="col-md-2"><strong>Cantidad</strong></p>
-                    <p class="col-md-2"><strong>Subtotal</strong></p>
+                    <p class="col-md-4">` + product.name + `</p>
+                    <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
+                    <div class="col-md-2"><input class="form-control" type="number" placeholder="` + product.count + `" id="count" value="` + product.count + `"></div>
+                    <p class="col-md-2" id="subtotal">` + product.currency + ` ` + product.unitCost * product.count + `</p>
             </div>
+            <hr>
             `
+        subtotal += product.unitCost * product.count;
     }
 
     document.getElementById("cart").innerHTML = htmlContentToAppend;
@@ -29,8 +33,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(CART_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             products = resultObj.data;
-            console.log(products);
-            showCart(products);
+            showCart(products.articles);
+            document.getElementById("productCostText").innerHTML = `UYU ` + subtotal;
+            document.getElementById("comissionText").innerHTML = `UYU ` + envio;
+            document.getElementById("totalCostText").innerHTML = `UYU ` + (envio + subtotal);
         }
     });
 });
