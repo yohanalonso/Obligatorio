@@ -2,6 +2,8 @@ var products = {};
 var subtotal = 0;
 var envio = 0;
 var cant = [];
+const dolar = 40;
+var moneda = "UYU "
 
 function changeCant() {
     for (let i = 0; i < cant.length; i++) {
@@ -25,15 +27,18 @@ function showCart(array) {
             </div>
             <hr>
             `
-        subtotal += product.unitCost * cant[i];
+        if ((moneda == "USD ") && (product.currency == "UYU")) {
+            subtotal += product.unitCost * cant[i] / dolar;
+        } else {
+            subtotal += product.unitCost * cant[i];
+        }
     }
 
     document.getElementById("cart").innerHTML = htmlContentToAppend;
-    document.getElementById("productCostText").innerHTML = `UYU ` + subtotal;
-    document.getElementById("comissionText").innerHTML = `UYU ` + envio;
-    document.getElementById("totalCostText").innerHTML = `UYU ` + (envio + subtotal);
+    document.getElementById("productCostText").innerHTML = moneda + subtotal;
+    document.getElementById("comissionText").innerHTML = moneda + envio;
+    document.getElementById("totalCostText").innerHTML = moneda + (envio + subtotal);
     subtotal = 0;
-    envio = 0;
 }
 
 
@@ -47,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
             for (let i = 0; i < products.articles.length; i++) {
                 let product = products.articles[i];
                 cant.push(product.count);
+                if (product.currency == "USD") {
+                    moneda = "USD "
+                }
             }
             showCart(products.articles);
         }
