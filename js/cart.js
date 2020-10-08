@@ -1,14 +1,22 @@
 var products = {};
 var subtotal = 0;
 var envio = 0;
-var cant = [];
 const dolar = 40;
 var moneda = "UYU "
 
-function changeCant() {
-    for (let i = 0; i < cant.length; i++) {
-        cant[i] = document.getElementById("cant" + i).value;
+function changeCant(i) {
+    document.getElementById("price" + i).innerHTML = products.articles[i].currency + ` ` + products.articles[i].unitCost * document.getElementById("cant" + i).value;
+    for (let j = 0; j < products.articles.length; j++) {
+        if ((moneda == "USD ") && (products.articles[j].currency == "UYU")) {
+            subtotal += products.articles[j].unitCost * document.getElementById("cant" + j).value / dolar;
+        } else {
+            subtotal += products.articles[j].unitCost * document.getElementById("cant" + j).value;
+        }
     }
+    document.getElementById("productCostText").innerHTML = moneda + subtotal;
+    document.getElementById("comissionText").innerHTML = moneda + envio;
+    document.getElementById("totalCostText").innerHTML = moneda + (envio + subtotal);
+    subtotal = 0;
 }
 
 function showCart(array) {
@@ -22,15 +30,15 @@ function showCart(array) {
                     </div>
                     <p class="col-md-4">` + product.name + `</p>
                     <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
-                    <div class="col-md-2"><input class="form-control" type="number" placeholder="` + product.count + `" id="cant` + i + `" value="` + cant[i] + `"></div>
-                    <p class="col-md-2">` + product.currency + ` ` + product.unitCost * cant[i] + `</p>
+                    <div class="col-md-2"><input onchange= changeCant(` + i + `) class="form-control" type="number" placeholder="` + product.count + `" id="cant` + i + `" value="` + product.count + `"></div>
+                    <p class="col-md-2" id="price` + i + `">` + product.currency + ` ` + product.unitCost * product.count + `</p>
             </div>
             <hr>
             `
         if ((moneda == "USD ") && (product.currency == "UYU")) {
-            subtotal += product.unitCost * cant[i] / dolar;
+            subtotal += product.unitCost * product.count / dolar;
         } else {
-            subtotal += product.unitCost * cant[i];
+            subtotal += product.unitCost * product.count;
         }
     }
 
@@ -49,20 +57,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(CART_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             products = resultObj.data;
-            for (let i = 0; i < products.articles.length; i++) {
-                let product = products.articles[i];
-                cant.push(product.count);
-                if (product.currency == "USD") {
-                    moneda = "USD "
-                }
+            let j = 0;
+            while (products.articles[j].currency == "UYU") {
+                j++;
+            }
+            if (products.articles[j].currency != "UYU") {
+                moneda = "USD "
             }
             showCart(products.articles);
         }
     });
 
-    document.getElementById("cart").addEventListener("change", function() {
-        changeCant();
-        showCart(products.articles);
-    });
 
 });
