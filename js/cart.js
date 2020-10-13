@@ -30,7 +30,7 @@ function showCart(array) {
                     </div>
                     <p class="col-md-4">` + product.name + `</p>
                     <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
-                    <div class="col-md-2"><input onchange= changeCant(` + i + `) class="form-control" type="number" placeholder="` + product.count + `" id="cant` + i + `" value="` + product.count + `"></div>
+                    <div class="col-md-2"><input onchange= changeCant(` + i + `) class="form-control" type="number" min="0" placeholder="` + product.count + `" id="cant` + i + `" value="` + product.count + `"></div>
                     <p class="col-md-2" id="price` + i + `">` + product.currency + ` ` + product.unitCost * product.count + `</p>
             </div>
             <hr>
