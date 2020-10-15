@@ -125,4 +125,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
         document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
     });
+    document.getElementById("sinradio").addEventListener("click", function() {
+        envio = 0;
+        document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
+        document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
+    });
 });
