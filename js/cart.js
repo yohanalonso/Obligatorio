@@ -11,11 +11,11 @@ function changeCant(i) {
     if ((moneda == "USD ") && (products.articles[i].currency == "UYU")) {
         subtotal -= price[i];
         price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value / dolar;
-        subtotal += products.articles[i].unitCost * document.getElementById("cant" + i).value / dolar;
+        subtotal += price[i];
     } else {
         subtotal -= price[i];
-        subtotal += products.articles[i].unitCost * document.getElementById("cant" + i).value;
         price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value;
+        subtotal += price[i];
     }
     document.getElementById("productCostText").innerHTML = moneda + subtotal;
     document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
