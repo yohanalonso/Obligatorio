@@ -4,83 +4,84 @@ var envio = 0;
 var price = [];
 const dolar = 40;
 var moneda = "UYU ";
-var formaDePago = "";
-var cardIn = `
+var formaDePago = 0;
+var band = true;
+var cardIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
-                <input type="text" id="name" class="form-control col-md-6" placeholder="Nombre y Apellido">
+                <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
                 <span id="tick1"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
-
+            </div>
+            <div class="needs-validation">
                 <label for="number" class="">Número de tarjeta:</label>
-                <input type="text" id="number" class="form-control col-md-4" placeholder="Número de tarjeta">
+                <input type="text" id="number" class="form-control col-md-8" placeholder="Número de tarjeta">
                 <span id="tick2"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
-
+            </div>
+            <div class="needs-validation">
                 <label for="securityNumber" class="">Número de seguridad:</label>
-                <input type="number" id="securityNumber" class="form-control col-md-2" placeholder="Nro de seguridad">
+                <input type="number" id="securityNumber" class="form-control col-md-6" placeholder="Nro de seguridad">
                 <span id="tick3"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
-
+            </div>
+            <div class="needs-validation">
                 <label for="date" class="">Fecha de vencimiento:</label>
-                <input type="date" id="date" class="form-control col-md-3" placeholder="Fecha de vencimiento">
+                <input type="date" id="date" class="form-control col-md-6" placeholder="Fecha de vencimiento">
                 <span id="tick4"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Ingrese una fecha</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
+            </div>
                 `
-var transfIn = `
+var transfIn = `<div class="needs-validation">
+                    <label for="name" class="">Nombre y Apellido:</label>
+                    <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
+                    <span id="tick1"></span>
+                    <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
+                    <div class="valid-feedback"><strong>Correcto!</strong></div>
+                </div>
+                <div class="needs-validation">
+                    <label for="number" class="">Número de cuenta:</label>
+                    <input type="number" id="number" class="form-control col-md-8" placeholder="Número de cuenta">
+                    <span id="tick2"></span>
+                    <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
+                    <div class="valid-feedback"><strong>Correcto!</strong></div>
+                </div>
+                <div class="needs-validation">
+                    <label for="bank" class="">Banco:</label>
+                    <input type="text" id="bank" class="form-control col-md-6" placeholder="Banco">
+                    <span id="tick3"></span>
+                    <div class="invalid-feedback"> <strong>Ingrese un Banco</strong></div>
+                    <div class="valid-feedback"><strong>Correcto!</strong></div>
+                </div>
+                <div class="needs-validation">
+                    <label for="sucursal" class="">Sucursal</label>
+                    <input type="text" id="sucursal" class="form-control col-md-6" placeholder="Sucursal">
+                    <span id="tick4"></span>
+                    <div class="invalid-feedback"> <strong>Ingrese la sucursal</strong></div>
+                    <div class="valid-feedback"><strong>Correcto!</strong></div>
+                </div>
+                `
+var cashIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
-                <input type="text" id="name" class="form-control col-md-6" placeholder="Nombre y Apellido">
+                <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
                 <span id="tick1"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
-
-                <label for="number" class="">Número de cuenta:</label>
-                <input type="number" id="number" class="form-control col-md-4" placeholder="Número de cuenta">
-                <span id="tick2"></span>
-                <br>
-                <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
-                <div class="valid-feedback"><strong>Correcto!</strong></div>
-
-                <label for="bank" class="">Banco:</label>
-                <input type="text" id="bank" class="form-control col-md-2" placeholder="Banco">
-                <span id="tick3"></span>
-                <br>
-                <div class="invalid-feedback"> <strong>Ingrese un Banco</strong></div>
-                <div class="valid-feedback"><strong>Correcto!</strong></div>
-
-                <label for="sucursal" class="">Sucursal</label>
-                <input type="text" id="sucursal" class="form-control col-md-3" placeholder="Sucursal">
-                <span id="tick4"></span>
-                <br>
-                <div class="invalid-feedback"> <strong>Ingrese la sucursal</strong></div>
-                <div class="valid-feedback"><strong>Correcto!</strong></div>
-                `
-var cashIn = `
-                <label for="name" class="">Nombre y Apellido:</label>
-                <input type="text" id="name" class="form-control col-md-6" placeholder="Nombre y Apellido">
-                <span id="tick1"></span>
-                <br>
-                <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
-                <div class="valid-feedback"><strong>Correcto!</strong></div>
-
+            </div>
+            <div class="needs-validation">
                 <label for="red" class="">Red de cobranza:</label>
-                <select class="custom-select d-block col-md-2" id="red">
+                <select class="custom-select d-block col-md-4" id="red">
                     <option value="">Elija la red</option>
                     <option>Abitab</option>
                     <option>RedPago</option>
                 </select>
                 <span id="tick2"></span>
-                <br>
                 <div class="invalid-feedback"> <strong>Seleccione una red</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
+            </div>
                 `
 
 function changeCant(i) {
@@ -130,21 +131,14 @@ function showCart(array) {
 }
 
 function validacion(dato, i) {
-    var tick = document.getElementById('tick' + i);
-    tick.classList.remove('mal');
-    tick.classList.remove('bien');
     if (dato.value == "") {
-
         dato.classList.add('is-invalid');
-        tick.classList.add('mal');
-        marca = " X";
+        band = band && false;
 
     } else {
-        marca = "&#10004;";
         dato.classList.add('is-valid');
-        tick.classList.add('bien');
+        band = band && true;
     }
-    document.getElementById('tick' + i).innerHTML = marca;
 }
 
 
@@ -167,17 +161,24 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     });
     document.getElementById("card").addEventListener("click", function() {
-        formaDePago = cardIn;
+        formaDePago = 1;
+        document.getElementById("cardOptions").innerHTML = cardIn;
+        document.getElementById("transfOptions").innerHTML = "";
+        document.getElementById("cashOptions").innerHTML = "";
     });
     document.getElementById("transf").addEventListener("click", function() {
-        formaDePago = transfIn;
+        formaDePago = 2;
+        document.getElementById("cardOptions").innerHTML = "";
+        document.getElementById("transfOptions").innerHTML = transfIn;
+        document.getElementById("cashOptions").innerHTML = "";
     });
     document.getElementById("cash").addEventListener("click", function() {
-        formaDePago = cashIn;
+        formaDePago = 3;
+        document.getElementById("cardOptions").innerHTML = "";
+        document.getElementById("transfOptions").innerHTML = "";
+        document.getElementById("cashOptions").innerHTML = cashIn;
     });
-    document.getElementById("acept").addEventListener("click", function() {
-        document.getElementById("waytopay").innerHTML = formaDePago;
-    });
+
     document.getElementById("premiumradio").addEventListener("click", function() {
         envio = 0.15;
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
@@ -201,18 +202,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById('comprobar').addEventListener("click", function() {
 
-        var marca = "";
 
-        if (formaDePago == "") {
-            var botton = document.getElementById('bottonToPay');
+        var botton = document.getElementById('bottonToPay');
+        if (formaDePago == 0) {
             botton.classList.remove('is-invalid');
             botton.classList.remove('is-valid');
-            tick.classList.remove('mal');
-            tick.classList.remove('bien');
-
             botton.classList.add('is-invalid');
-            tick.classList.add('mal');
-            marca = " X";
 
         } else {
             var name = document.getElementById('name');
@@ -220,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             name.classList.remove('is-valid');
             validacion(name, 1);
 
-            if (formaDePago == cardIn) {
+            if (formaDePago == 1) {
                 var number = document.getElementById('number');
                 var securityNumber = document.getElementById('securityNumber');
                 var date = document.getElementById('date');
@@ -233,30 +228,62 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 validacion(number, 2);
                 validacion(securityNumber, 3);
                 validacion(date, 4);
+                if (band) {
+                    botton.classList.remove('is-invalid');
+                    botton.classList.remove('is-valid');
+                    botton.classList.add('is-valid');
+                } else {
+                    botton.classList.remove('is-invalid');
+                    botton.classList.remove('is-valid');
+                    botton.classList.add('is-invalid');
+                }
+                band = true;
 
             } else {
-                var number = document.getElementById('number');
-                var bank = document.getElementById('bank');
-                var sucursal = document.getElementById('sucursal');
-                number.classList.remove('is-invalid');
-                number.classList.remove('is-valid');
-                securityNumber.classList.remove('is-invalid');
-                securityNumber.classList.remove('is-valid');
-                date.classList.remove('is-invalid');
-                date.classList.remove('is-valid');
-                bank.classList.remove('is-invalid');
-                bank.classList.remove('is-valid');
-                sucursal.classList.remove('is-invalid');
-                sucursal.classList.remove('is-valid');
+                if (formaDePago == 2) {
+                    var number = document.getElementById('number');
+                    var bank = document.getElementById('bank');
+                    var sucursal = document.getElementById('sucursal');
+                    number.classList.remove('is-invalid');
+                    number.classList.remove('is-valid');
+                    bank.classList.remove('is-invalid');
+                    bank.classList.remove('is-valid');
+                    sucursal.classList.remove('is-invalid');
+                    sucursal.classList.remove('is-valid');
+                    validacion(number, 2);
+                    validacion(bank, 3);
+                    validacion(sucursal, 4);
+                    if (band) {
+                        botton.classList.remove('is-invalid');
+                        botton.classList.remove('is-valid');
+                        botton.classList.add('is-valid');
+                    } else {
+                        botton.classList.remove('is-invalid');
+                        botton.classList.remove('is-valid');
+                        botton.classList.add('is-invalid');
+                    }
+                    band = true;
+                } else {
+                    var red = document.getElementById('red');
+                    red.classList.remove('is-invalid');
+                    red.classList.remove('is-valid');
+                    validacion(red, 2);
+                    if (band) {
+                        botton.classList.remove('is-invalid');
+                        botton.classList.remove('is-valid');
+                        botton.classList.add('is-valid');
+                    } else {
+                        botton.classList.remove('is-invalid');
+                        botton.classList.remove('is-valid');
+                        botton.classList.add('is-invalid');
+                    }
+                    band = true;
+                }
 
             }
 
-            var red = document.getElementById('red');
-            red.classList.remove('is-invalid');
-            red.classList.remove('is-valid');
 
 
         }
-        document.getElementById('tick').innerHTML = marca;
     });
 });
