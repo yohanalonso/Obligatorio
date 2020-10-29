@@ -51,12 +51,47 @@
         </div>
     </nav>
     <div class="container p-5">
-        <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-            <h4 class="alert-heading">¡A trabajar! :)</h4>
-            <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-            <hr>
-            <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-        </div>
+        <form id="profile">
+            <div class="row">
+                <label for="firstName" class="col-md">Primer Nombre:
+                    <br>
+                    <input type="text" id="firstName" class="col-md-8" placeholder="Primer Nombre" value="">
+                </label>
+                <label for="lastName" class="col-md">Segundo Nombre:
+                    <br>
+                    <input type="text" id="secondName" class="col-md-8" placeholder="Segundo Nombre" value="">
+                </label>
+            </div>
+            <div class="row">
+                <label for="firstLastname" class="col-md">Primer Apellido:
+                    <br>
+                    <input type="text" id="firstLastname" class="col-md-8"  placeholder="Primer Apellido" value="">
+                </label>
+                <label for="secondLastname" class="col-md">Segundo Apellido:
+                    <br>
+                    <input type="text" id="secondLastname" class="col-md-8" placeholder="Segundo Apellido" value="">
+                </label>
+            </div>
+            <div class="row">
+                <label for="age" class="col-md-6">Edad:
+                    <br>
+                    <input type="number" min="0" id="age" class="col-md-8" placeholder="Edad" value="">
+                </label>
+            </div>
+            <div class="row">
+                <label for="email" class="col-md-6">Correo:
+                    <br>
+                    <input type="email" id="email" class="col-md-8" placeholder="Correo" value="">
+                </label>
+            </div>
+            <div class="row">
+                <label for="cel" class="col-md-6">Telefono:
+                    <br>
+                    <input type="tel" id="cel" class="col-md-8" placeholder="Telefono" value="">
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block col-md-2" id="save" type="submit">Guardar</button>
+        </form>
     </div>
     <footer class="text-muted bg-light">
         <div class="container">
