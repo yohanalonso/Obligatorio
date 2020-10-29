@@ -5,7 +5,7 @@ var price = [];
 const dolar = 40;
 var moneda = "UYU ";
 var formaDePago = 0;
-var band = true;
+var flag = true;
 var cardIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
                 <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
@@ -133,11 +133,11 @@ function showCart(array) {
 function validacion(dato, i) {
     if (dato.value == "") {
         dato.classList.add('is-invalid');
-        band = band && false;
+        flag = flag && false;
 
     } else {
         dato.classList.add('is-valid');
-        band = band && true;
+        flag = flag && true;
     }
 }
 
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 validacion(number, 2);
                 validacion(securityNumber, 3);
                 validacion(date, 4);
-                if (band) {
+                if (flag) {
                     botton.classList.remove('is-invalid');
                     botton.classList.remove('is-valid');
                     botton.classList.add('is-valid');
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     botton.classList.remove('is-valid');
                     botton.classList.add('is-invalid');
                 }
-                band = true;
+                flag = true;
 
             } else {
                 if (formaDePago == 2) {
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     validacion(number, 2);
                     validacion(bank, 3);
                     validacion(sucursal, 4);
-                    if (band) {
+                    if (flag) {
                         botton.classList.remove('is-invalid');
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-valid');
@@ -262,13 +262,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-invalid');
                     }
-                    band = true;
+                    flag = true;
                 } else {
                     var red = document.getElementById('red');
                     red.classList.remove('is-invalid');
                     red.classList.remove('is-valid');
                     validacion(red, 2);
-                    if (band) {
+                    if (flag) {
                         botton.classList.remove('is-invalid');
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-valid');
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-invalid');
                     }
-                    band = true;
+                    flag = true;
                 }
 
             }
