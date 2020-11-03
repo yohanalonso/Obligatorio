@@ -1,16 +1,14 @@
-var dato = [];
-
 function showInfo() {
     let info = localStorage.getItem('guardado');
     if (info != undefined) {
         let datos = JSON.parse(info);
-        document.getElementById("firstName").value = datos[0].firstName;
-        document.getElementById("secondName").value = datos[0].secondName;
-        document.getElementById("firstLastname").value = datos[0].firstLastname;
-        document.getElementById("secondLastname").value = datos[0].secondLastname;
-        document.getElementById("age").value = datos[0].age;
-        document.getElementById("email").value = datos[0].email;
-        document.getElementById("cel").value = datos[0].cel;
+        document.getElementById("firstName").value = datos.firstName;
+        document.getElementById("secondName").value = datos.secondName;
+        document.getElementById("firstLastname").value = datos.firstLastname;
+        document.getElementById("secondLastname").value = datos.secondLastname;
+        document.getElementById("age").value = datos.age;
+        document.getElementById("email").value = datos.email;
+        document.getElementById("cel").value = datos.cel;
     }
 
 }
@@ -29,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             "email": document.getElementById("email").value,
             "cel": document.getElementById("cel").value
         }
-        dato.push(info);
-        localStorage.setItem('guardado', JSON.stringify(dato));
+        localStorage.setItem('guardado', JSON.stringify(info));
         showInfo();
     });
 
