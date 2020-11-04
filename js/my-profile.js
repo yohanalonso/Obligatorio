@@ -1,5 +1,5 @@
 function showInfo() {
-    let info = localStorage.getItem('guardado');
+    let info = localStorage.getItem('data');
     if (info != undefined) {
         let datos = JSON.parse(info);
         document.getElementById("firstName").value = datos.firstName;
@@ -25,10 +25,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             "secondLastname": document.getElementById("secondLastname").value,
             "age": document.getElementById("age").value,
             "email": document.getElementById("email").value,
-            "cel": document.getElementById("cel").value
+            "cel": document.getElementById("cel").value,
         }
-        localStorage.setItem('guardado', JSON.stringify(info));
+        localStorage.setItem('data', JSON.stringify(info));
+        localStorage.setItem('guardado', "true");
         showInfo();
     });
-
+    if (localStorage.getItem('guardado') == "true") {
+        document.getElementById("alertResult").classList.add("show");
+        localStorage.removeItem('guardado');
+    }
 });
