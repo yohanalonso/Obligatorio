@@ -51,6 +51,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById("cerrar").addEventListener("click", function() {
         localStorage.removeItem('usuario');
-        localStorage.removeItem('guardado');
+        localStorage.removeItem('data');
     });
 });
