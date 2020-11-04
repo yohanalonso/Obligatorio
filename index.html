@@ -42,10 +42,20 @@
     <form class="signin" id="signin">
         <img class="mb-4" src="img/login.png" alt="" width="" height="125">
         <h1 class="h3 mb-3 font-weight-normal">Por favor inicia sesión</h1>
-        <label for="inputEmail" class="sr-only">Correo electrónico</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" required autofocus>
-        <label for="inputPassword" class="sr-only">Contraseña</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+        <div class="needs-validation">
+            <label for="inputEmail" class="sr-only">Correo electrónico</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Correo electrónico" autofocus>
+            <span id="tick1"></span>
+            <div class="invalid-feedback"> <strong>Ingrese un correo valido</strong></div>
+            <div class="valid-feedback"><strong>Correcto!</strong></div>
+        </div>
+        <div class="needs-validation">
+            <label for="inputPassword" class="sr-only">Contraseña</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña">
+            <span id="tick2"></span>
+            <div class="invalid-feedback"> <strong>Contraseña incorrecta</strong></div>
+            <div class="valid-feedback"><strong>Correcto!</strong></div>
+        </div>
         <div class="checkbox mb-3">
             <label>
         <input type="checkbox" value="remember-me"> Recordar contraseña
