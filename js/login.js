@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         validarEmail(valor2);
         validar(valor1);
         if (validar(valor1) && validarEmail(valor2)) {
-            localStorage.setItem('usuario', valor2);
+            localStorage.setItem('usuario', valor2.value);
             window.location.href = "index1.html";
         }
     });
