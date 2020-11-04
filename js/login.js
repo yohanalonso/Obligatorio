@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         e.preventDefault();
         valor1 = document.getElementById("inputPassword");
         valor2 = document.getElementById("inputEmail");
-        validarEmail(valor2);
-        validar(valor1);
-        if (validar(valor1) && validarEmail(valor2)) {
+        val2 = validarEmail(valor2);
+        val1 = validar(valor1);
+        if (val1 && val2) {
             localStorage.setItem('usuario', valor2.value);
             window.location.href = "index1.html";
         }
