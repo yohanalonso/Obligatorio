@@ -9,6 +9,7 @@ function showInfo() {
         document.getElementById("age").value = datos.age;
         document.getElementById("email").value = datos.email;
         document.getElementById("cel").value = datos.cel;
+
     }
 
 }
@@ -16,6 +17,12 @@ function showInfo() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
+    //Configuraciones para el elemento que sube archivos
+    var dzoptions = {
+        url: "/",
+        autoQueue: false
+    };
+    var myDropzone = new Dropzone("div#file-upload", dzoptions);
     showInfo();
     document.getElementById("save").addEventListener("click", function() {
         let info = {
@@ -25,7 +32,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
             "secondLastname": document.getElementById("secondLastname").value,
             "age": document.getElementById("age").value,
             "email": document.getElementById("email").value,
-            "cel": document.getElementById("cel").value,
+            "cel": document.getElementById("cel").value
+        }
+        if (document.getElementById("imagen") != undefined) {
+            info.imagen = document.getElementById("imagen").src;
         }
         localStorage.setItem('data', JSON.stringify(info));
         localStorage.setItem('guardado', "true");
@@ -34,4 +44,5 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById("alertResult").classList.add("show");
         localStorage.removeItem('guardado');
     }
+
 });

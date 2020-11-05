@@ -48,6 +48,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
     if (localStorage.getItem('usuario') != undefined) {
         document.getElementById("dropdownMenuButton").innerHTML = localStorage.getItem('usuario');
     }
+    if (localStorage.getItem('data') != undefined) {
+        let datos = JSON.parse(localStorage.getItem('data'));
+        if (datos.imagen != "") {
+            document.getElementById("addImage").innerHTML = `<img class="" src="` + datos.imagen + `" width=40px alt="Foto de perfil"></img>`
+        }
+    }
 
     document.getElementById("cerrar").addEventListener("click", function() {
         localStorage.removeItem('usuario');
