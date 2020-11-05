@@ -47,7 +47,7 @@ function showProductsList() {
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))) {
 
             htmlContentToAppend += `
-            <div class="col order-` + (currentProductsArray.length - i) + `">
+            <div class="col-md-4">
                 <a href="product-info.html" class="card mb-4 shadow-sm custom-card list-group-item list-group-item-action">
                     <img class="bd-placeholder-img card-img-top" src="` + product.imgSrc + `" alt="` + product.description + `">
                     <h3 class="m-3">` + product.name + ` - ` + product.currency + ` ` + product.cost + `</h3>
