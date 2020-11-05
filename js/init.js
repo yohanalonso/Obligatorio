@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
     if (localStorage.getItem('data') != undefined) {
         let datos = JSON.parse(localStorage.getItem('data'));
-        if (datos.imagen != "") {
+        if (datos.imagen != undefined) {
             document.getElementById("addImage").innerHTML = `<img class="" src="` + datos.imagen + `" width=40px alt="Foto de perfil"></img>`
         }
     }
@@ -58,5 +58,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("cerrar").addEventListener("click", function() {
         localStorage.removeItem('usuario');
         localStorage.removeItem('data');
+        localStorage.removeItem('image');
     });
 });
