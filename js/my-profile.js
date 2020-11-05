@@ -9,7 +9,9 @@ function showInfo() {
         document.getElementById("age").value = datos.age;
         document.getElementById("email").value = datos.email;
         document.getElementById("cel").value = datos.cel;
-
+        if (datos.imagen != undefined) {
+            document.getElementById("addImage").innerHTML = `<img class="" src="` + datos.imagen + `" width=40px alt="Foto de perfil"></img>`
+        }
     }
 
 }
@@ -35,10 +37,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             "cel": document.getElementById("cel").value
         }
         if (document.getElementById("imagen") != undefined) {
-            info.imagen = document.getElementById("imagen").src;
+            localStorage.setItem('image', document.getElementById("imagen").src);
+        }
+        if (localStorage.getItem("image") != undefined) {
+            info.imagen = localStorage.getItem("image");
         }
         localStorage.setItem('data', JSON.stringify(info));
         localStorage.setItem('guardado', "true");
+        showInfo();
     });
     if (localStorage.getItem('guardado') == "true") {
         document.getElementById("alertResult").classList.add("show");
