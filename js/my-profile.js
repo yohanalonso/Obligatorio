@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
         localStorage.setItem('data', JSON.stringify(info));
         localStorage.setItem('guardado', "true");
-        showInfo();
     });
     if (localStorage.getItem('guardado') == "true") {
         document.getElementById("alertResult").classList.add("show");
