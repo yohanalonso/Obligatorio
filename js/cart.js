@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(CART_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             products = resultObj.data;
-            let j = 0;
             for (let i = 0; i < products.articles.length; i++) {
                 price.push(products.articles[i].unitCost * products.articles[i].count);
                 if (products.articles[i].currency == "USD") {
