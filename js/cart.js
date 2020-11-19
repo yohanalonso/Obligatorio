@@ -100,22 +100,35 @@ function changeCant(i) {
     document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
 }
 
+function borrar(i) {
+    subtotal -= price[i];
+    document.getElementById("productCostText").innerHTML = moneda + subtotal;
+    document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
+    document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
+    document.getElementById("fila" + i).innerHTML = "";
+}
+
 function showCart(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
         htmlContentToAppend += `
-            <div class="row">
-                    <div class="col-md-2">
-                        <img src="` + product.src + `" class="d-block w-100" alt="...">
-                    </div>
-                    <p class="col-md-4">` + product.name + `</p>
-                    <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
-                    <div class="col-md-2"><input onchange= changeCant(` + i + `) class="form-control" type="number" min="0" placeholder="` + product.count + `" id="cant` + i + `" value="` + product.count + `"></div>
-                    <p class="col-md-2" id="price` + i + `">` + product.currency + ` ` + price[i] + `</p>
+        <div id="fila${i}">
+            <div class="row" id="fila${i}">
+                <div class="col-md-2">
+                    <img src="` + product.src + `" class="d-block w-100" alt="...">
+                </div>
+                <p class="col-md-3">` + product.name + `</p>
+                <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
+                <div class="col-md-2"><input onchange= changeCant(${i}) class="form-control" type="number" min="0" placeholder="` + product.count + `" id="cant${i}" value="` + product.count + `"></div>
+                <p class="col-md-2" id="price` + i + `">` + product.currency + ` ` + price[i] + `</p>
+                <div class="col-md-1">
+                    <button class="btn-danger btn fas fa-trash-alt" onclick= borrar(${i})></button>
+                </div>
             </div>
             <hr>
-            `
+        </div>   
+        `
         if ((moneda == "USD ") && (product.currency == "UYU")) {
             price[i] = product.unitCost * product.count / dolar;
             subtotal += price[i];
