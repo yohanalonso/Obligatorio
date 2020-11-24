@@ -8,28 +8,28 @@ var formaDePago = 0;
 var flag = true;
 var cardIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
-                <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
+                <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
                 <span id="tick1"></span>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="number" class="">Número de tarjeta:</label>
-                <input type="text" id="number" class="form-control col-md-8" placeholder="Número de tarjeta">
+                <input type="text" name="numero" id="number" class="form-control col-md-8" placeholder="Número de tarjeta">
                 <span id="tick2"></span>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="securityNumber" class="">Número de seguridad:</label>
-                <input type="number" id="securityNumber" class="form-control col-md-6" placeholder="Nro de seguridad">
+                <input type="number" name="numeroSeguridad" id="securityNumber" class="form-control col-md-6" placeholder="Nro de seguridad">
                 <span id="tick3"></span>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="date" class="">Fecha de vencimiento:</label>
-                <input type="date" id="date" class="form-control col-md-6" placeholder="Fecha de vencimiento">
+                <input type="date" name="vto" id="date" class="form-control col-md-6" placeholder="Fecha de vencimiento">
                 <span id="tick4"></span>
                 <div class="invalid-feedback"> <strong>Ingrese una fecha</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
@@ -37,28 +37,28 @@ var cardIn = `<div class="needs-validation">
                 `
 var transfIn = `<div class="needs-validation">
                     <label for="name" class="">Nombre y Apellido:</label>
-                    <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
+                    <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
                     <span id="tick1"></span>
                     <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="number" class="">Número de cuenta:</label>
-                    <input type="number" id="number" class="form-control col-md-8" placeholder="Número de cuenta">
+                    <input type="number" name="numero" id="number" class="form-control col-md-8" placeholder="Número de cuenta">
                     <span id="tick2"></span>
                     <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="bank" class="">Banco:</label>
-                    <input type="text" id="bank" class="form-control col-md-6" placeholder="Banco">
+                    <input type="text" name="banco" id="bank" class="form-control col-md-6" placeholder="Banco">
                     <span id="tick3"></span>
                     <div class="invalid-feedback"> <strong>Ingrese un Banco</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="sucursal" class="">Sucursal</label>
-                    <input type="text" id="sucursal" class="form-control col-md-6" placeholder="Sucursal">
+                    <input type="text" name="sucursal" id="sucursal" class="form-control col-md-6" placeholder="Sucursal">
                     <span id="tick4"></span>
                     <div class="invalid-feedback"> <strong>Ingrese la sucursal</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
@@ -66,14 +66,14 @@ var transfIn = `<div class="needs-validation">
                 `
 var cashIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
-                <input type="text" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
+                <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
                 <span id="tick1"></span>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="red" class="">Red de cobranza:</label>
-                <select class="custom-select d-block col-md-4" id="red">
+                <select name="red" class="custom-select d-block col-md-4" id="red">
                     <option value="">Elija la red</option>
                     <option>Abitab</option>
                     <option>RedPago</option>
@@ -84,23 +84,29 @@ var cashIn = `<div class="needs-validation">
             </div>
                 `
 
-function changeCant(i) {
+function changeCant(i) { // Cambia el subtotal, el csoto del envio y el total al detectar un cambio en la cantidad
     document.getElementById("price" + i).innerHTML = products.articles[i].currency + ` ` + products.articles[i].unitCost * document.getElementById("cant" + i).value;
     if ((moneda == "USD ") && (products.articles[i].currency == "UYU")) {
-        subtotal -= price[i];
-        price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value / dolar;
-        subtotal += price[i];
-    } else {
-        subtotal -= price[i];
+        subtotal -= price[i] / dolar;
         price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value;
-        subtotal += price[i];
+        subtotal += price[i] / dolar;
+    } else {
+        if ((moneda == "UYU ") && (products.articles[i].currency == "USD")) {
+            subtotal -= price[i] * dolar;
+            price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value;
+            subtotal += price[i] * dolar;
+        } else {
+            subtotal -= price[i];
+            price[i] = products.articles[i].unitCost * document.getElementById("cant" + i).value;
+            subtotal += price[i];
+        }
     }
     document.getElementById("productCostText").innerHTML = moneda + subtotal;
     document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
     document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
 }
 
-function borrar(i) {
+function borrar(i) { // Borra el producto del carrito
     subtotal -= price[i];
     document.getElementById("productCostText").innerHTML = moneda + subtotal;
     document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
@@ -108,7 +114,7 @@ function borrar(i) {
     document.getElementById("fila" + i).innerHTML = "";
 }
 
-function showCart(array) {
+function showCart(array) { // Muestra los productos del carrito
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
@@ -120,7 +126,7 @@ function showCart(array) {
                 </div>
                 <p class="col-md-3">` + product.name + `</p>
                 <p class="col-md-2">` + product.currency + ` ` + product.unitCost + `</p>
-                <div class="col-md-2"><input onchange= changeCant(${i}) class="form-control" type="number" min="0" placeholder="` + product.count + `" id="cant${i}" value="` + product.count + `"></div>
+                <div class="col-md-2" ><input name="cantidad_${product.name}" onchange= changeCant(${i}) class="form-control" type="number" min="0" placeholder="` + product.count + `" id="cant${i}" value="` + product.count + `"></div>
                 <p class="col-md-2" id="price` + i + `">` + product.currency + ` ` + price[i] + `</p>
                 <div class="col-md-1">
                     <button class="btn-danger btn fas fa-trash-alt" onclick= borrar(${i})></button>
@@ -130,8 +136,7 @@ function showCart(array) {
         </div>   
         `
         if ((moneda == "USD ") && (product.currency == "UYU")) {
-            price[i] = product.unitCost * product.count / dolar;
-            subtotal += price[i];
+            subtotal += price[i] / dolar;
         } else {
             subtotal += price[i];
         }
@@ -143,7 +148,7 @@ function showCart(array) {
     document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
 }
 
-function validacion(dato, i) {
+function validacion(dato, i) { // Malida si se ingresaron datos en el modal
     if (dato.value == "") {
         dato.classList.add('is-invalid');
         flag = flag && false;
@@ -167,56 +172,78 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 price.push(products.articles[i].unitCost * products.articles[i].count);
                 if (products.articles[i].currency == "USD") {
                     moneda = "USD ";
+                    document.getElementById("pesos").classList.remove('active');
+                    document.getElementById("dolares").classList.add("active");
                 }
             }
             showCart(products.articles);
         }
     });
-    document.getElementById("card").addEventListener("click", function() {
+    document.getElementById("card").addEventListener("click", function() { // Muestra el formulario en caso de seleccionar "Tarjeta de crédito"
         formaDePago = 1;
         document.getElementById("cardOptions").innerHTML = cardIn;
         document.getElementById("transfOptions").innerHTML = "";
         document.getElementById("cashOptions").innerHTML = "";
     });
-    document.getElementById("transf").addEventListener("click", function() {
+    document.getElementById("transf").addEventListener("click", function() { // Muestra el formulario en caso de seleccionar "Transferencia bancaria"
         formaDePago = 2;
         document.getElementById("cardOptions").innerHTML = "";
         document.getElementById("transfOptions").innerHTML = transfIn;
         document.getElementById("cashOptions").innerHTML = "";
     });
-    document.getElementById("cash").addEventListener("click", function() {
+    document.getElementById("cash").addEventListener("click", function() { // Muestra el formulario en caso de seleccionar "Efectivo"
         formaDePago = 3;
         document.getElementById("cardOptions").innerHTML = "";
         document.getElementById("transfOptions").innerHTML = "";
         document.getElementById("cashOptions").innerHTML = cashIn;
     });
 
-    document.getElementById("premiumradio").addEventListener("click", function() {
+    document.getElementById("premiumradio").addEventListener("click", function() { // Muetra el costo de de envio (15%)
         envio = 0.15;
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
         document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
     });
-    document.getElementById("expressradio").addEventListener("click", function() {
+    document.getElementById("expressradio").addEventListener("click", function() { // Muetra el costo de de envío (7%)
         envio = 0.07;
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
         document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
     });
-    document.getElementById("standardradio").addEventListener("click", function() {
+    document.getElementById("standardradio").addEventListener("click", function() { // Muetra el costo de de envío (5%)
         envio = 0.05;
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
         document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
     });
-    document.getElementById("sinradio").addEventListener("click", function() {
+    document.getElementById("sinradio").addEventListener("click", function() { // Muetra el costo de de envío (0%)
         envio = 0;
         document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
         document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
     });
 
-    document.getElementById('comprobar').addEventListener("click", function() {
+    document.getElementById("pesos").addEventListener("click", function() { // Pasa el subtotal, costo del envío y total en UYU
+        if (moneda == "USD ") {
+            moneda = "UYU "
+            subtotal = subtotal * dolar;
+            document.getElementById("productCostText").innerHTML = moneda + subtotal;
+            document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
+            document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
+        }
+    });
+
+    document.getElementById("dolares").addEventListener("click", function() { // Pasa el subtotal, costo del envío y total en USD
+        if (moneda == "UYU ") {
+            moneda = "USD "
+            subtotal = subtotal / dolar;
+            document.getElementById("productCostText").innerHTML = moneda + subtotal;
+            document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
+            document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
+        }
+    });
+
+    document.getElementById('comprobar').addEventListener("click", function() { // Comprueba los formularios
 
 
         var botton = document.getElementById('bottonToPay');
-        if (formaDePago == 0) {
+        if (formaDePago == 0) { // En caso de no selecionar forma de pago
             botton.classList.remove('is-invalid');
             botton.classList.remove('is-valid');
             botton.classList.add('is-invalid');
@@ -227,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             name.classList.remove('is-valid');
             validacion(name, 1);
 
-            if (formaDePago == 1) {
+            if (formaDePago == 1) { // En caso de elegir "Tarjeta de crédito"
                 var number = document.getElementById('number');
                 var securityNumber = document.getElementById('securityNumber');
                 var date = document.getElementById('date');
@@ -252,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 flag = true;
 
             } else {
-                if (formaDePago == 2) {
+                if (formaDePago == 2) { // En caso de elegir "Transferencia bancaria"
                     var number = document.getElementById('number');
                     var bank = document.getElementById('bank');
                     var sucursal = document.getElementById('sucursal');
@@ -275,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                         botton.classList.add('is-invalid');
                     }
                     flag = true;
-                } else {
+                } else { // En caso de elegir "Efectivo"
                     var red = document.getElementById('red');
                     red.classList.remove('is-invalid');
                     red.classList.remove('is-valid');

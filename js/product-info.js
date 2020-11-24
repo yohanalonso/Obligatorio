@@ -1,16 +1,16 @@
 var product = {};
 
-function showImagesGallery(array) {
+function showImagesGallery(array) { // Muestra el carrusel
 
     let htmlContentToAppend = "";
     if (array.length > 0) {
-        htmlContentToAppend += `
+        htmlContentToAppend += `  
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="` + array[0] + `" class="d-block w-100" alt="...">
-                </div>`
-        for (let i = 1; i < array.length; i++) {
+                </div>` // Primera parte del bloque del carrusel
+        for (let i = 1; i < array.length; i++) { // Se ingresan las fotos
             let imageSrc = array[i];
 
             htmlContentToAppend += `
@@ -30,12 +30,12 @@ function showImagesGallery(array) {
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        `
+        ` // Final del bloque del carrusel
     }
     document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 }
 
-function showRelatedProducts(products, related) {
+function showRelatedProducts(products, related) { // Muesta los productos relacionados al producto que estoy viendo
     let htmlContentToAppend = "";
 
     for (let i = 0; i < related.length; i++) {
@@ -58,7 +58,7 @@ function showRelatedProducts(products, related) {
 
 };
 
-function showStars(cantidad) {
+function showStars(cantidad) { // Muestra las estrellas de cada comentario
     let stars = "";
 
     for (let i = 0; i < cantidad; i++) {
@@ -70,7 +70,7 @@ function showStars(cantidad) {
     return stars;
 };
 
-function showComments(comments) {
+function showComments(comments) { // Muestra los comentarios
 
     let htmlContentToAppend = "";
 
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             categoryHTML.innerHTML = product.category;
             priceHTML.innerHTML = product.currency + ` ` + product.cost;
 
-            getJSONData(PRODUCTS_URL).then(function(resultObj) {
+            getJSONData(PRODUCTS_URL).then(function(resultObj) { // Trae es JSon del los productos para mostrar una descripción de los productos relacionados
                 if (resultObj.status === "ok") {
                     showRelatedProducts(resultObj.data, product.relatedProducts);
                 };
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             showComments(resultObj.data);
         }
     });
-    document.getElementById("enviar").addEventListener("click", function() {
+    document.getElementById("enviar").addEventListener("click", function() { // Muesta en pantalla el comentario ingresado
         today = new Date();
         dd = today.getDate();
         mm = today.getMonth() + 1;

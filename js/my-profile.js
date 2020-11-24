@@ -1,4 +1,4 @@
-function showInfo() {
+function showInfo() { //Muestra los datos guardados
     let info = localStorage.getItem('data');
     if (info != undefined) {
         let datos = JSON.parse(info);
@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         autoQueue: false
     };
     var myDropzone = new Dropzone("div#file-upload", dzoptions);
+
     showInfo();
-    document.getElementById("save").addEventListener("click", function() {
+    document.getElementById("save").addEventListener("click", function() { // Guarada los datos ingresados
         let info = {
             "firstName": document.getElementById("firstName").value,
             "secondName": document.getElementById("secondName").value,
@@ -43,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
             info.imagen = localStorage.getItem("image");
         }
         localStorage.setItem('data', JSON.stringify(info));
-        localStorage.setItem('guardado', "true");
+        localStorage.setItem('guardado', "true"); //Crea un elemento momentaneo en localStorage para poder mostrar el mensaje 
         showInfo();
     });
-    if (localStorage.getItem('guardado') == "true") {
+    if (localStorage.getItem('guardado') == "true") { // Muestra el mensaje de que se guardo
         document.getElementById("alertResult").classList.add("show");
         localStorage.removeItem('guardado');
     }

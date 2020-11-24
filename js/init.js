@@ -8,15 +8,16 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/pro
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
-var showSpinner = function() {
+
+var showSpinner = function() { // Muestra el Spinner
     document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-var hideSpinner = function() {
+var hideSpinner = function() { // Deja de mostrar el Spinner
     document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-var getJSONData = function(url) {
+var getJSONData = function(url) { // Trae un JSon
     var result = {};
     showSpinner();
     return fetch(url)
@@ -45,17 +46,17 @@ var getJSONData = function(url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
-    if (localStorage.getItem('usuario') != undefined) {
+    if (localStorage.getItem('usuario') != undefined) { //Muestra el usurio que se logueo en el menu desplegable
         document.getElementById("dropdownMenuButton").innerHTML = localStorage.getItem('usuario');
     }
-    if (localStorage.getItem('data') != undefined) {
+    if (localStorage.getItem('data') != undefined) { //Muetrea la imagen de perfil ingresada
         let datos = JSON.parse(localStorage.getItem('data'));
         if (datos.imagen != undefined) {
             document.getElementById("addImage").innerHTML = `<img class="" src="` + datos.imagen + `" width=40px alt="Foto de perfil"></img>`
         }
     }
 
-    document.getElementById("cerrar").addEventListener("click", function() {
+    document.getElementById("cerrar").addEventListener("click", function() { // Borra el localStorage al cerrar sesión
         localStorage.removeItem('usuario');
         localStorage.removeItem('data');
         localStorage.removeItem('image');

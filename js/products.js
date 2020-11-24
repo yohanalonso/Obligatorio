@@ -9,19 +9,19 @@ var maxCost = undefined;
 
 function sortProduct(criteria, array) {
     let result = [];
-    if (criteria === ORDER_ASC_BY_COST) {
+    if (criteria === ORDER_ASC_BY_COST) { // Ordena por costo ascendente
         result = array.sort(function(a, b) {
             if (a.cost < b.cost) { return -1; }
             if (a.cost > b.cost) { return 1; }
             return 0;
         });
-    } else if (criteria === ORDER_DESC_BY_COST) {
+    } else if (criteria === ORDER_DESC_BY_COST) { // Ordena por costo descendente
         result = array.sort(function(a, b) {
             if (a.cost > b.cost) { return -1; }
             if (a.cost < b.cost) { return 1; }
             return 0;
         });
-    } else if (criteria === ORDER_BY_SOLD_COUNT) {
+    } else if (criteria === ORDER_BY_SOLD_COUNT) { // Ordena por cantidad de vendidos
         result = array.sort(function(a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
@@ -37,7 +37,7 @@ function sortProduct(criteria, array) {
 
 
 
-function showProductsList() {
+function showProductsList() { // Muesta en pantalla los poroductos ordenados según el criterio elegido
 
     let htmlContentToAppend = "";
     for (let i = 0; i < currentProductsArray.length; i++) {
@@ -64,7 +64,7 @@ function showProductsList() {
     }
 }
 
-function sortAndShowProducts(sortCriteria, productArray) {
+function sortAndShowProducts(sortCriteria, productArray) { // Ordena y muestra los productos en el orden elegido
     currentSortCriteria = sortCriteria;
 
     if (productArray != undefined) {
@@ -83,7 +83,7 @@ function sortAndShowProducts(sortCriteria, productArray) {
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data);
+            sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data); // Muestra por defecto los productos en orden ascendente según precio
         }
     });
     document.getElementById("sortAsc").addEventListener("click", function() {
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         sortAndShowProducts(ORDER_BY_SOLD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function() {
+    document.getElementById("clearRangeFilter").addEventListener("click", function() { // Limpia el rango de precios de los productos
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
