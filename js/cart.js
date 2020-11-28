@@ -9,28 +9,28 @@ var flag = true;
 var cardIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
                 <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
-                <span id="tick1"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="number" class="">Número de tarjeta:</label>
                 <input type="text" name="numero" id="number" class="form-control col-md-8" placeholder="Número de tarjeta">
-                <span id="tick2"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="securityNumber" class="">Número de seguridad:</label>
                 <input type="number" name="numeroSeguridad" id="securityNumber" class="form-control col-md-6" placeholder="Nro de seguridad">
-                <span id="tick3"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
             <div class="needs-validation">
                 <label for="date" class="">Fecha de vencimiento:</label>
                 <input type="date" name="vto" id="date" class="form-control col-md-6" placeholder="Fecha de vencimiento">
-                <span id="tick4"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Ingrese una fecha</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
@@ -38,28 +38,28 @@ var cardIn = `<div class="needs-validation">
 var transfIn = `<div class="needs-validation">
                     <label for="name" class="">Nombre y Apellido:</label>
                     <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
-                    <span id="tick1"></span>
+                    <span id="tick"></span>
                     <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="number" class="">Número de cuenta:</label>
                     <input type="number" name="numero" id="number" class="form-control col-md-8" placeholder="Número de cuenta">
-                    <span id="tick2"></span>
+                    <span id="tick"></span>
                     <div class="invalid-feedback"> <strong>Ingrese un número</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="bank" class="">Banco:</label>
                     <input type="text" name="banco" id="bank" class="form-control col-md-6" placeholder="Banco">
-                    <span id="tick3"></span>
+                    <span id="tick"></span>
                     <div class="invalid-feedback"> <strong>Ingrese un Banco</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
                 <div class="needs-validation">
                     <label for="sucursal" class="">Sucursal</label>
                     <input type="text" name="sucursal" id="sucursal" class="form-control col-md-6" placeholder="Sucursal">
-                    <span id="tick4"></span>
+                    <span id="tick"></span>
                     <div class="invalid-feedback"> <strong>Ingrese la sucursal</strong></div>
                     <div class="valid-feedback"><strong>Correcto!</strong></div>
                 </div>
@@ -67,7 +67,7 @@ var transfIn = `<div class="needs-validation">
 var cashIn = `<div class="needs-validation">
                 <label for="name" class="">Nombre y Apellido:</label>
                 <input type="text" name="nombre" id="name" class="form-control col-md-8" placeholder="Nombre y Apellido">
-                <span id="tick1"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Ingrese Nombre y Apellido</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
@@ -78,7 +78,7 @@ var cashIn = `<div class="needs-validation">
                     <option>Abitab</option>
                     <option>RedPago</option>
                 </select>
-                <span id="tick2"></span>
+                <span id="tick"></span>
                 <div class="invalid-feedback"> <strong>Seleccione una red</strong></div>
                 <div class="valid-feedback"><strong>Correcto!</strong></div>
             </div>
