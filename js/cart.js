@@ -148,11 +148,10 @@ function showCart(array) { // Muestra los productos del carrito
     document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
 }
 
-function validacion(dato, i) { // Malida si se ingresaron datos en el modal
+function validacion(dato) { // Malida si se ingresaron datos en el modal
     if (dato.value == "") {
         dato.classList.add('is-invalid');
         flag = flag && false;
-
     } else {
         dato.classList.add('is-valid');
         flag = flag && true;
@@ -244,7 +243,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
         var botton = document.getElementById('bottonToPay');
         if (formaDePago == 0) { // En caso de no selecionar forma de pago
-            botton.classList.remove('is-invalid');
             botton.classList.remove('is-valid');
             botton.classList.add('is-invalid');
 
@@ -252,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             var name = document.getElementById('name');
             name.classList.remove('is-invalid');
             name.classList.remove('is-valid');
-            validacion(name, 1);
+            validacion(name);
 
             if (formaDePago == 1) { // En caso de elegir "Tarjeta de crédito"
                 var number = document.getElementById('number');
@@ -264,15 +262,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 securityNumber.classList.remove('is-valid');
                 date.classList.remove('is-invalid');
                 date.classList.remove('is-valid');
-                validacion(number, 2);
-                validacion(securityNumber, 3);
-                validacion(date, 4);
+                validacion(number);
+                validacion(securityNumber);
+                validacion(date);
                 if (flag) {
                     botton.classList.remove('is-invalid');
-                    botton.classList.remove('is-valid');
                     botton.classList.add('is-valid');
                 } else {
-                    botton.classList.remove('is-invalid');
                     botton.classList.remove('is-valid');
                     botton.classList.add('is-invalid');
                 }
@@ -289,15 +285,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     bank.classList.remove('is-valid');
                     sucursal.classList.remove('is-invalid');
                     sucursal.classList.remove('is-valid');
-                    validacion(number, 2);
-                    validacion(bank, 3);
-                    validacion(sucursal, 4);
+                    validacion(number);
+                    validacion(bank);
+                    validacion(sucursal);
                     if (flag) {
                         botton.classList.remove('is-invalid');
-                        botton.classList.remove('is-valid');
                         botton.classList.add('is-valid');
                     } else {
-                        botton.classList.remove('is-invalid');
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-invalid');
                     }
@@ -306,13 +300,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     var red = document.getElementById('red');
                     red.classList.remove('is-invalid');
                     red.classList.remove('is-valid');
-                    validacion(red, 2);
+                    validacion(red);
                     if (flag) {
                         botton.classList.remove('is-invalid');
-                        botton.classList.remove('is-valid');
                         botton.classList.add('is-valid');
                     } else {
-                        botton.classList.remove('is-invalid');
                         botton.classList.remove('is-valid');
                         botton.classList.add('is-invalid');
                     }
