@@ -107,7 +107,15 @@ function changeCant(i) { // Cambia el subtotal, el csoto del envio y el total al
 }
 
 function borrar(i) { // Borra el producto del carrito
-    subtotal -= price[i];
+    if ((moneda == "USD ") && (products.articles[i].currency == "UYU")) {
+        subtotal -= price[i] / dolar;
+    } else {
+        if ((moneda == "UYU ") && (products.articles[i].currency == "USD")) {
+            subtotal -= price[i] * dolar;
+        } else {
+            subtotal -= price[i];
+        }
+    }
     document.getElementById("productCostText").innerHTML = moneda + subtotal;
     document.getElementById("comissionText").innerHTML = moneda + (envio * subtotal).toFixed(2);
     document.getElementById("totalCostText").innerHTML = moneda + (envio * subtotal + subtotal).toFixed(2);
